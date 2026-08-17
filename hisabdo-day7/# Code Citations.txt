@@ -1,0 +1,254 @@
+# Code Citations
+
+## License: unknown
+https://github.com/amitgupta13/devcamper_api/blob/4ce7cdd9c553f587d8269f210b079e6b9ecfcaf7/models/User.js
+
+```
+Perfect! Both fixes have been successfully applied and verified:
+
+## ✅ FIXES APPLIED AND VERIFIED
+
+### **Fix #1: ✅ Environment Variables Added**
+**File:** `backend/.env`
+
+```
+MONGO_URI=mongodb+srv://meharhamidshoukat_db_user:YId8qDNLFl2pIiVz@cluster0.y7ura5j.mongodb.net/?appName=Cluster0
+PORT=5000
+JWT_SECRET=your_super_secret_jwt_key_here
+JWT_EXPIRE=1d
+```
+
+✅ Verified - All 4 required variables are present.
+
+---
+
+### **Fix #2: ✅ Mongoose Pre-Save Hook Fixed**
+**File:** `backend/models/User.js` (lines 31-38)
+
+**Before (Broken):**
+```javascript
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return
+```
+
+
+## License: unknown
+https://github.com/amitgupta13/devcamper_api/blob/4ce7cdd9c553f587d8269f210b079e6b9ecfcaf7/models/User.js
+
+```
+Perfect! Both fixes have been successfully applied and verified:
+
+## ✅ FIXES APPLIED AND VERIFIED
+
+### **Fix #1: ✅ Environment Variables Added**
+**File:** `backend/.env`
+
+```
+MONGO_URI=mongodb+srv://meharhamidshoukat_db_user:YId8qDNLFl2pIiVz@cluster0.y7ura5j.mongodb.net/?appName=Cluster0
+PORT=5000
+JWT_SECRET=your_super_secret_jwt_key_here
+JWT_EXPIRE=1d
+```
+
+✅ Verified - All 4 required variables are present.
+
+---
+
+### **Fix #2: ✅ Mongoose Pre-Save Hook Fixed**
+**File:** `backend/models/User.js` (lines 31-38)
+
+**Before (Broken):**
+```javascript
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
+});
+```
+
+**
+```
+
+
+## License: unknown
+https://github.com/trudova/e-commerce-api-v2/blob/77fbc894fc9dba01c913116f847d41eb7c290fe0/models/User.js
+
+```
+Perfect! Both fixes have been successfully applied and verified:
+
+## ✅ FIXES APPLIED AND VERIFIED
+
+### **Fix #1: ✅ Environment Variables Added**
+**File:** `backend/.env`
+
+```
+MONGO_URI=mongodb+srv://meharhamidshoukat_db_user:YId8qDNLFl2pIiVz@cluster0.y7ura5j.mongodb.net/?appName=Cluster0
+PORT=5000
+JWT_SECRET=your_super_secret_jwt_key_here
+JWT_EXPIRE=1d
+```
+
+✅ Verified - All 4 required variables are present.
+
+---
+
+### **Fix #2: ✅ Mongoose Pre-Save Hook Fixed**
+**File:** `backend/models/User.js` (lines 31-38)
+
+**Before (Broken):**
+```javascript
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
+});
+```
+
+**After (Fixed):**
+```javascript
+userSchema.pre("save", async function () {
+  if (!this.isModified("password")) return;
+  const salt = await bcrypt.genS
+```
+
+
+## License: unknown
+https://github.com/blakecondrey/JobbyLounge/blob/bcf536c64ff78a90897eefa72309d6a51795ab54/README.md
+
+```
+Perfect! Both fixes have been successfully applied and verified:
+
+## ✅ FIXES APPLIED AND VERIFIED
+
+### **Fix #1: ✅ Environment Variables Added**
+**File:** `backend/.env`
+
+```
+MONGO_URI=mongodb+srv://meharhamidshoukat_db_user:YId8qDNLFl2pIiVz@cluster0.y7ura5j.mongodb.net/?appName=Cluster0
+PORT=5000
+JWT_SECRET=your_super_secret_jwt_key_here
+JWT_EXPIRE=1d
+```
+
+✅ Verified - All 4 required variables are present.
+
+---
+
+### **Fix #2: ✅ Mongoose Pre-Save Hook Fixed**
+**File:** `backend/models/User.js` (lines 31-38)
+
+**Before (Broken):**
+```javascript
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
+});
+```
+
+**After (Fixed):**
+```javascript
+userSchema.pre("save", async function () {
+  if (!this.isModified("password")) return;
+  const salt = await bcrypt.genS
+```
+
+
+## License: unknown
+https://github.com/trudova/e-commerce-api-v2/blob/77fbc894fc9dba01c913116f847d41eb7c290fe0/models/User.js
+
+```
+Perfect! Both fixes have been successfully applied and verified:
+
+## ✅ FIXES APPLIED AND VERIFIED
+
+### **Fix #1: ✅ Environment Variables Added**
+**File:** `backend/.env`
+
+```
+MONGO_URI=mongodb+srv://meharhamidshoukat_db_user:YId8qDNLFl2pIiVz@cluster0.y7ura5j.mongodb.net/?appName=Cluster0
+PORT=5000
+JWT_SECRET=your_super_secret_jwt_key_here
+JWT_EXPIRE=1d
+```
+
+✅ Verified - All 4 required variables are present.
+
+---
+
+### **Fix #2: ✅ Mongoose Pre-Save Hook Fixed**
+**File:** `backend/models/User.js` (lines 31-38)
+
+**Before (Broken):**
+```javascript
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
+});
+```
+
+**After (Fixed):**
+```javascript
+userSchema.pre("save", async function () {
+  if (!this.isModified("password")) return;
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+});
+```
+
+✅ Verified - Hook is now promise-based (Mongoose 
+```
+
+
+## License: unknown
+https://github.com/blakecondrey/JobbyLounge/blob/bcf536c64ff78a90897eefa72309d6a51795ab54/README.md
+
+```
+Perfect! Both fixes have been successfully applied and verified:
+
+## ✅ FIXES APPLIED AND VERIFIED
+
+### **Fix #1: ✅ Environment Variables Added**
+**File:** `backend/.env`
+
+```
+MONGO_URI=mongodb+srv://meharhamidshoukat_db_user:YId8qDNLFl2pIiVz@cluster0.y7ura5j.mongodb.net/?appName=Cluster0
+PORT=5000
+JWT_SECRET=your_super_secret_jwt_key_here
+JWT_EXPIRE=1d
+```
+
+✅ Verified - All 4 required variables are present.
+
+---
+
+### **Fix #2: ✅ Mongoose Pre-Save Hook Fixed**
+**File:** `backend/models/User.js` (lines 31-38)
+
+**Before (Broken):**
+```javascript
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
+});
+```
+
+**After (Fixed):**
+```javascript
+userSchema.pre("save", async function () {
+  if (!this.isModified("password")) return;
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+});
+```
+
+✅ Verified - Hook is now promise-based (Mongoose 
+```
+
