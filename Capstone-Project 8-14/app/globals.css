@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display text-ink-900;
+  }
+  :focus-visible {
+    outline: 2px solid theme("colors.brass.DEFAULT");
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* The signature motif: a khata ledger row — label / dotted rule / figure */
+  .ledger-row {
+    @apply flex items-baseline justify-between gap-3 border-b border-paper-rule py-3;
+  }
+  .ledger-row__label {
+    @apply text-ink-400 text-sm sm:text-base;
+  }
+  .ledger-row__value {
+    @apply font-ledger tabular-nums text-ink-900 text-sm sm:text-base;
+  }
+}
