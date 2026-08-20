@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import CustomerForm from "@/components/forms/CustomerForm";
 import type { CustomerFormValues } from "@/lib/validators/customer.schema";
-import { addCustomer } from "@/lib/mock-data";
+import { addCustomer } from "@/lib/mock/customers";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/Card";
 
@@ -20,13 +20,17 @@ export default function NewCustomerPage() {
       notes: values.notes || undefined,
     });
 
-    // Redirect back to customers list
     router.push("/customers");
   };
 
   return (
     <div className="mx-auto max-w-2xl">
-      <Breadcrumbs items={[{ label: "Customers", href: "/customers" }, { label: "Add customer" }]} />
+      <Breadcrumbs
+        items={[
+          { label: "Customers", href: "/customers" },
+          { label: "Add customer" },
+        ]}
+      />
 
       <Link
         href="/customers"
@@ -45,7 +49,11 @@ export default function NewCustomerPage() {
           <CardTitle>Customer details</CardTitle>
         </CardHeader>
         <CardContent>
-          <CustomerForm onSubmit={handleSubmit} submitLabel="Add customer" />
+          <CustomerForm
+            onSubmit={handleSubmit}
+            onCancel={() => router.push("/customers")}
+            submitLabel="Add customer"
+          />
         </CardContent>
       </Card>
     </div>

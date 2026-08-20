@@ -1,44 +1,81 @@
-import { TrendingUp, TrendingDown, Users } from "lucide-react";
+import { TrendingUp, TrendingDown, Users, ArrowLeftRight } from "lucide-react";
+import Link from "next/link";
 import StatCard from "@/components/dashboard/StatCard";
 import RecentTransactions from "@/components/dashboard/RecentTransactions";
-import { MOCK_CUSTOMERS, getCustomerBalance } from "@/lib/mock/customers";
+import { getDashboardStats, getTransactions, getCustomerById } from "@/lib/mock/customers";
 
 export default function DashboardPage() {
-  const balances = MOCK_CUSTOMERS.map((c) => getCustomerBalance(c.id));
-  const receivable = balances.filter((b) => b > 0).reduce((sum, b) => sum + b, 0);
-  const payable = Math.abs(balances.filter((b) => b < 0).reduce((sum, b) => sum + b, 0));
+  const stats = getDashboardStats();
+  const recent = getTransactions().slice(0, 5).map((t) => {
+    const customer = getCustomerById(t.customerId);
+    return {
+      id: t.id,
+      customerId: t.customerId,
+      customerName: customer?.name || "Unknown",
+      note: t.note,
+      amount: t.amount,
+    };
+  });
 
   return (
-    <div className="mx-auto max-w-5xl">
-      <h1 className="text-2xl font-semibold text-ink-900">Dashboard</h1>
-      <p className="mt-1 text-sm text-ink-400">
-        Demo data — wired up to the real API in a later milestone.
-      </p>
+    <div className="mx-auto max-w-5xl space-y-8">
+      <div>
+        <h1 className="text-2xl font-semibold text-ink-900">Dashboard</h1>
+        <p className="mt-1 text-sm text-ink-400">
+          Overview of your business ledger
+        </p>
+      </div>
 
-      <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard
-          label="Total receivable"
-          value={`Rs ${receivable.toLocaleString()}`}
+          label="Total Receivable"
+          value={`Rs ${stats.totalReceivable.toLocaleString()}`}
           icon={TrendingUp}
           tone="credit"
         />
         <StatCard
-          label="Total payable"
-          value={`Rs ${payable.toLocaleString()}`}
+          label="Total Payable"
+          value={`Rs ${stats.totalPayable.toLocaleString()}`}
           icon={TrendingDown}
           tone="debit"
         />
         <StatCard
-          label="Active customers"
-          value={String(MOCK_CUSTOMERS.length)}
+          label="Active Customers"
+          value={String(stats.totalCustomers)}
           icon={Users}
+          tone="neutral"
+        />
+        <StatCard
+          label="Transactions"
+          value={String(stats.totalTransactions)}
+          icon={ArrowLeftRight}
           tone="neutral"
         />
       </div>
 
-      <div className="mt-8">
-        <RecentTransactions />
+      {/* Quick links */}
+      <div className="flex flex-wrap gap-3">
+        <Link
+          href="/customers/new"
+          className="rounded-md bg-ink-900 px-4 py-2 text-sm font-medium text-paper hover:bg-brass-600"
+        >
+          + Add Customer
+        </Link>
+        <Link
+          href="/transactions/new"
+          className="rounded-md border border-paper-rule px-4 py-2 text-sm font-medium text-ink-900 hover:bg-paper-rule/40"
+        >
+          + Add Transaction
+        </Link>
+        <Link
+          href="/ledger"
+          className="rounded-md border border-paper-rule px-4 py-2 text-sm font-medium text-ink-900 hover:bg-paper-rule/40"
+        >
+          View Ledger
+        </Link>
       </div>
+
+      <RecentTransactions rows={recent} />
     </div>
   );
 }

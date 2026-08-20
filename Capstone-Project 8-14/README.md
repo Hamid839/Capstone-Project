@@ -117,3 +117,18 @@ This is **one project, one repo, continuous history**. New internship days:
 - Add commits to this same repo (commit messages prefixed `Day N: ...`)
 - Update `docs/PROGRESS.md` with what changed
 - Never create a new top-level `day-N` folder or a separate repo
+
+## Day 11 & Day 12 Progress
+
+### Modules Completed
+1. **Customers** (Day 10) – List, Add, Detail
+2. **Transactions** (Day 11) – Full CRUD (List, Add, Edit, Delete) + Validation
+3. **Ledger** (Day 12) – Customer-wise ledger view with running balance and history
+
+### Features
+- Form validation using Zod + React Hook Form
+- Loading / Empty / Error states
+- Responsive design (mobile + desktop)
+- Reusable UI components
+- Mock data layer ready to be replaced by real API later
+- Structure prepared for future authentication protection

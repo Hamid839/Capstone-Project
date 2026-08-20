@@ -1,13 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Plus, Search } from "lucide-react";
 import { Card } from "@/components/ui/Card";
 import Badge from "@/components/ui/Badge";
 import Table, { type Column } from "@/components/ui/Table";
-import { MOCK_CUSTOMERS, getCustomerBalance } from "@/lib/mock/customers";
+import { getCustomers, getCustomerBalance } from "@/lib/mock/customers";
 import type { Customer } from "@/lib/types";
 
 function formatRs(amount: number) {
@@ -18,14 +18,18 @@ function formatRs(amount: number) {
 export default function CustomersPage() {
   const router = useRouter();
   const [query, setQuery] = useState("");
+  const [customers, setCustomers] = useState<Customer[]>([]);
 
-  // Read straight from the shared mock store so customers added via
-  // /customers/new show up here without needing a real backend yet.
-  const filtered = useMemo(
-    () =>
-      MOCK_CUSTOMERS.filter((c) => c.name.toLowerCase().includes(query.trim().toLowerCase())),
-    [query]
-  );
+  // Load customers every time this page is shown
+  useEffect(() => {
+    setCustomers(getCustomers());
+  }, []);
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return customers;
+    return customers.filter((c) => c.name.toLowerCase().includes(q));
+  }, [query, customers]);
 
   const columns: Column<Customer>[] = [
     {
@@ -58,21 +62,25 @@ export default function CustomersPage() {
 
   return (
     <div className="mx-auto max-w-5xl">
+      {/* Header + Add button */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-ink-900">Customers</h1>
           <p className="mt-1 text-sm text-ink-400">
-            {MOCK_CUSTOMERS.length} customer{MOCK_CUSTOMERS.length === 1 ? "" : "s"} in your ledger
+            {customers.length} customer{customers.length === 1 ? "" : "s"} in your ledger
           </p>
         </div>
+
         <Link
           href="/customers/new"
           className="inline-flex items-center justify-center gap-2 rounded-md bg-ink-900 px-4 py-2 text-sm font-medium text-paper transition-colors hover:bg-brass-600"
         >
-          <Plus className="h-4 w-4" /> Add customer
+          <Plus className="h-4 w-4" />
+          Add customer
         </Link>
       </div>
 
+      {/* Search */}
       <div className="relative mt-6">
         <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-400" />
         <input
@@ -84,6 +92,7 @@ export default function CustomersPage() {
         />
       </div>
 
+      {/* Table */}
       <Card className="mt-4">
         <Table
           columns={columns}
@@ -95,8 +104,7 @@ export default function CustomersPage() {
       </Card>
 
       <p className="mt-4 text-xs text-ink-400">
-        Demo data — lives only in this browser tab until the API in <code>server/</code> is
-        connected in a later milestone.
+        Demo data — lives only in this browser tab until the real API is connected.
       </p>
     </div>
   );
