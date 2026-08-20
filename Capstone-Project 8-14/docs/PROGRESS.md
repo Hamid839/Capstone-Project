@@ -21,7 +21,16 @@ this log, they never create a new top-level folder.
 - Implemented two full pages: Home (`/`) and Features (`/features`), plus a bonus Dashboard (`/dashboard`) demonstrating the sidebar
 - Confirmed fully responsive behavior across mobile/tablet/desktop breakpoints
 
-## Day 10 — (add here when started)
+## Day 10 — Core Functionality & Customers Module
+- Built reusable UI primitives in `components/ui/`: `Button`, `Card`, `Input`/`Textarea`, `Table` (generic/typed), `Badge`, `Breadcrumbs`
+- Implemented the **Customers module** — `/customers` (list, search, add-customer form) and `/customers/[id]` (detail + transaction history)
+- Added `lib/validators/customer.schema.ts` (zod) + `components/forms/CustomerForm.tsx` (react-hook-form) for real inline form validation
+- Added `lib/types.ts` and `lib/mock/customers.ts` as a temporary in-memory data layer (no backend wired yet)
+- Refactored Dashboard to use new `StatCard`/`RecentTransactions` components instead of Day 9's inline markup
+- Improved Sidebar active-link detection to handle nested routes (e.g. `/customers/[id]`)
+- Full write-up: [`docs/Day10-Implementation.md`](./Day10-Implementation.md)
+
+## Day 11 — (add here when started)
 - ...
 
 <!--

@@ -38,7 +38,7 @@ export default function Sidebar({
     <ul className="space-y-1">
       {NAV_ITEMS.map((item) => {
         const Icon = item.icon;
-        const active = pathname === item.href;
+        const active = item.href === "/dashboard" ? pathname === item.href : pathname.startsWith(item.href);
         return (
           <li key={item.href}>
             <Link
