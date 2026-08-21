@@ -1,8 +1,10 @@
+import type { Metadata } from "next";
 import "./globals.css";
+import { AuthProvider } from "@/lib/auth/AuthContext";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "HisabDo Web",
-  description: "Modern web recreation of the HisabDo khata/ledger app",
+  description: "Digital ledger for your business",
 };
 
 export default function RootLayout({
@@ -12,7 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <AuthProvider>{children}</AuthProvider>
+      </body>
     </html>
   );
 }

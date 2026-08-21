@@ -30,7 +30,31 @@ this log, they never create a new top-level folder.
 - Improved Sidebar active-link detection to handle nested routes (e.g. `/customers/[id]`)
 - Full write-up: [`docs/Day10-Implementation.md`](./Day10-Implementation.md)
 
-## Day 11 — (add here when started)
+## Day 11 — Transactions Module
+- Implemented the **Transactions module**: list, add, edit, and delete — full CRUD, unlike Customers' add-only scope on Day 10
+- Added `lib/validators/transaction.schema.ts` (zod) + `components/forms/TransactionForm.tsx`
+- Connected to the Dashboard (`getDashboardStats()`, `RecentTransactions`)
+- Loading / empty / error states added
+
+## Day 12 — Ledger Module
+- Implemented the **Ledger module** (`app/(dashboard)/ledger/page.tsx`): customer selector, running balance, full transaction history per customer
+- Ledger is an intentional read-only derived view composed from Customer + Transaction data — see the "Note on the Ledger module" in the README
+- Improved navigation between all three modules (Customers, Transactions, Ledger)
+- Confirmed responsive behavior across the new pages
+
+## Day 13 — Authentication (Login, Register, Forgot Password)
+- Built `lib/auth/AuthContext.tsx` — mock, localStorage-based auth (`login`, `register`, `logout`, `updateProfile`)
+- Implemented `/login`, `/register`, `/forgot-password` pages with zod + react-hook-form validation
+- Protected the Dashboard route group: `app/(dashboard)/layout.tsx` redirects unauthenticated users to `/login`
+- Demo account: `hamid@hisabdo.com` / `123456`
+
+## Day 14 — Profile, Settings, and Auth Polish
+- Added `/profile` and `/settings` pages
+- Wired Logout into the Sidebar, connected to `AuthContext`
+- Fixed UI/UX issues found during testing; confirmed responsiveness across the full app
+- See the README's "Note on authentication" for the documented limitations of the current mock auth approach
+
+## Day 15 — (add here when started)
 - ...
 
 <!--

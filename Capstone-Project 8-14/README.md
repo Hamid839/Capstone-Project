@@ -132,3 +132,24 @@ This is **one project, one repo, continuous history**. New internship days:
 - Reusable UI components
 - Mock data layer ready to be replaced by real API later
 - Structure prepared for future authentication protection
+
+## Day 13 & Day 14 – Authentication & User Management
+
+### Implemented
+- Login, Register, Forgot Password (UI)
+- Form validation (Zod + React Hook Form)
+- AuthContext + localStorage persistence
+- Protected Dashboard routes
+- User Profile page
+- Settings page with Logout
+- Navigation connected with authentication state
+
+### Demo Account
+- Email: hamid@hisabdo.com
+- Password: 123456
+
+### Note on the Ledger module
+Ledger is intentionally a **read-only, derived view** — it's composed from existing Customer and Transaction data (`getCustomerBalance()`, `getTransactionsByCustomer()`), not its own separate entity. There's nothing to "add," "edit," or "delete" on the Ledger itself; to change what it shows, add/edit/delete a Transaction and the Ledger view reflects it automatically. This matches how Ledger was originally scoped in `docs/Day8-Analysis-Architecture.md`.
+
+### Note on authentication
+The current authentication system (`lib/auth/AuthContext.tsx`) is a **mock, localStorage-based implementation built for demonstration/project purposes** — it is not production-grade security. In a real deployment this would be replaced with a secure backend: hashed passwords, HTTP-only cookies or secure tokens, and database-backed user records instead of `localStorage`.
